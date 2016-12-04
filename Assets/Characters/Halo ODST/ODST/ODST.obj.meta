@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: d608f61ec451f1d4682c65f51720b5b2
+timeCreated: 1480878135
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: badge_standard1
+    100002: body
+    100004: body_standard1
+    100006: d_chest_standard1
+    100008: d_head_standard1
+    100010: d_waist_standard1
+    100012: fx_nostrils
+    100014: head
+    100016: l_foot
+    100018: l_hand
+    100020: //RootNode
+    100022: r_foot
+    100024: r_hand
+    100026: r_thigh
+    100028: rank_captain1
+    100030: spine1
+    100032: weapon_back
+    400000: badge_standard1
+    400002: body
+    400004: body_standard1
+    400006: d_chest_standard1
+    400008: d_head_standard1
+    400010: d_waist_standard1
+    400012: fx_nostrils
+    400014: head
+    400016: l_foot
+    400018: l_hand
+    400020: //RootNode
+    400022: r_foot
+    400024: r_hand
+    400026: r_thigh
+    400028: rank_captain1
+    400030: spine1
+    400032: weapon_back
+    2300000: badge_standard1
+    2300002: body
+    2300004: body_standard1
+    2300006: d_chest_standard1
+    2300008: d_head_standard1
+    2300010: d_waist_standard1
+    2300012: fx_nostrils
+    2300014: head
+    2300016: l_foot
+    2300018: l_hand
+    2300020: r_foot
+    2300022: r_hand
+    2300024: r_thigh
+    2300026: rank_captain1
+    2300028: spine1
+    2300030: weapon_back
+    3300000: badge_standard1
+    3300002: body
+    3300004: body_standard1
+    3300006: d_chest_standard1
+    3300008: d_head_standard1
+    3300010: d_waist_standard1
+    3300012: fx_nostrils
+    3300014: head
+    3300016: l_foot
+    3300018: l_hand
+    3300020: r_foot
+    3300022: r_hand
+    3300024: r_thigh
+    3300026: rank_captain1
+    3300028: spine1
+    3300030: weapon_back
+    4300000: badge_standard1
+    4300002: body
+    4300004: body_standard1
+    4300006: d_chest_standard1
+    4300008: d_head_standard1
+    4300010: d_waist_standard1
+    4300012: fx_nostrils
+    4300014: head
+    4300016: l_foot
+    4300018: l_hand
+    4300020: r_foot
+    4300022: r_hand
+    4300024: r_thigh
+    4300026: rank_captain1
+    4300028: spine1
+    4300030: weapon_back
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
