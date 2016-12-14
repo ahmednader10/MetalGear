@@ -24,6 +24,7 @@ public class PlayerControl : MonoBehaviour
 
 	private Animator anim;
 	private int speedFloat;
+	private int crawlBool;
 	private int jumpBool;
 	private int hFloat;
 	private int vFloat;
@@ -35,6 +36,7 @@ public class PlayerControl : MonoBehaviour
 	private float h;
 	private float v;
 
+
 	private bool aim;
 
 	private bool run;
@@ -44,6 +46,7 @@ public class PlayerControl : MonoBehaviour
 
 	// fly
 	private bool fly = false;
+	private bool crawl = false;
 	private float distToGround;
 	private float sprintFactor;
 
@@ -57,6 +60,7 @@ public class PlayerControl : MonoBehaviour
 		hFloat = Animator.StringToHash("H");
 		vFloat = Animator.StringToHash("V");
 		aimBool = Animator.StringToHash("Aim");
+		crawlBool = Animator.StringToHash("Crawling");
 		// fly
 		flyBool = Animator.StringToHash ("Fly");
 		groundedBool = Animator.StringToHash("Grounded");
@@ -73,6 +77,11 @@ public class PlayerControl : MonoBehaviour
 		// fly
 		if(Input.GetButtonDown ("Fly"))
 			fly = !fly;
+
+		if (Input.GetKeyDown (KeyCode.LeftShift)) {
+			crawl = !crawl;
+		}
+
 		aim = Input.GetButton("Aim");
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
@@ -86,9 +95,10 @@ public class PlayerControl : MonoBehaviour
 		anim.SetBool (aimBool, IsAiming());
 		anim.SetFloat(hFloat, h);
 		anim.SetFloat(vFloat, v);
-		
+
 		// Fly
 		anim.SetBool (flyBool, fly);
+		anim.SetBool (crawlBool, crawl);
 		GetComponent<Rigidbody>().useGravity = !fly;
 		anim.SetBool (groundedBool, IsGrounded ());
 		if(fly)
@@ -96,8 +106,8 @@ public class PlayerControl : MonoBehaviour
 
 		else
 		{
-			MovementManagement (h, v, run, sprint);
-			JumpManagement ();
+				MovementManagement (h, v, run, sprint);
+				JumpManagement ();
 		}
 	}
 
@@ -133,6 +143,7 @@ public class PlayerControl : MonoBehaviour
 
 		if(isMoving)
 		{
+
 			if(sprinting)
 			{
 				speed = sprintSpeed;
