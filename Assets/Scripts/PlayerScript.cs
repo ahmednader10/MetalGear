@@ -3,10 +3,12 @@ using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
 	private ArrayList healthItems;
+	private ArrayList guns;
 	private int health = 100;
 	// Use this for initialization
 	void Start () {
 		healthItems = new ArrayList();
+		guns = new ArrayList ();
 	}
 	
 	// Update is called once per frame
@@ -17,6 +19,11 @@ public class PlayerScript : MonoBehaviour {
 	public void AddHealthItem(GameObject item) {
 		healthItems.Add (item);
 		print ("ADDED HEALTH: " + item);
+	}
+
+	public void AddGun(GameObject item) {
+		guns.Add (item);
+		print ("ADDED Gun: " + item);
 	}
 
 	public void activateHealthItems() {

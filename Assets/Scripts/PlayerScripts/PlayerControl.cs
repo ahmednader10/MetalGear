@@ -8,7 +8,6 @@ public class PlayerControl : MonoBehaviour
 	public float runSpeed = 1.0f;
 	public float sprintSpeed = 2.0f;
 	public float flySpeed = 4.0f;
-
 	public float turnSmoothing = 3.0f;
 	public float aimTurnSmoothing = 15.0f;
 	public float speedDampTime = 0.1f;
@@ -46,9 +45,14 @@ public class PlayerControl : MonoBehaviour
 
 	// fly
 	private bool fly = false;
-	private bool crawl = false;
+	public static bool crawl = false;
 	private float distToGround;
-	private float sprintFactor;
+	private float sprintFactor; 
+
+
+	public AudioClip walkingAudio;
+	private AudioSource walkingSource;
+	public GameObject SoundController;
 
 	void Awake()
 	{
@@ -66,6 +70,7 @@ public class PlayerControl : MonoBehaviour
 		groundedBool = Animator.StringToHash("Grounded");
 		distToGround = GetComponent<Collider>().bounds.extents.y;
 		sprintFactor = sprintSpeed / runSpeed;
+		walkingSource = SoundController.GetComponents<AudioSource> () [0];
 	}
 
 	bool IsGrounded() {
@@ -80,6 +85,10 @@ public class PlayerControl : MonoBehaviour
 
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {
 			crawl = !crawl;
+		}
+
+		if (crawl) {
+			
 		}
 
 		aim = Input.GetButton("Aim");
@@ -158,6 +167,7 @@ public class PlayerControl : MonoBehaviour
 			}
 
 			anim.SetFloat(speedFloat, speed, speedDampTime, Time.deltaTime);
+			//walkingSource.PlayDelayed (0.1f);
 		}
 		else
 		{

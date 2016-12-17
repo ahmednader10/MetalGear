@@ -36,19 +36,21 @@ public class GunLaserScript : MonoBehaviour {
 	private AudioSource blastAudio;
 	public AudioClip M9_sound;
 
+
 	void  Start(){
 		LaserLine.enabled= false;
 		//Screen.showCursor=false;
 		//Screen.lockCursor=true;
 		LaserLight.enabled = false;
 		blastAudio = GetComponent<AudioSource>();
+
 	}
 
 	void  Update () { 
 		RaycastHit hit; 
 		Vector3 forward= transform.TransformDirection(Vector3.forward);
 
-		if(Input.GetMouseButtonUp(1)){
+		if(Input.GetMouseButtonUp(1) && !PlayerControl.crawl && !box_script.isCovered){
 
 			// Draw the Ray and Laser effects
 			Debug.DrawRay(transform.position, forward * ShotLength,Color.blue);

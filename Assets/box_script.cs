@@ -3,7 +3,7 @@ using System.Collections;
 
 public class box_script : MonoBehaviour {
 	public GameObject cardboard;
-	private bool isCovered;
+	public static bool isCovered;
 	private Animator animator;
 	// Use this for initialization
 	void Start () {

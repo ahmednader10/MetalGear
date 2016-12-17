@@ -8,7 +8,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 	public class SoldierAIController : MonoBehaviour
 	{
 		public NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
-		public ThirdPersonCharacter character { get; private set; } // the character we are controlling
+		public ThirdPersonCharacter character {
+			get; private set; } // the character we are controlling
 		public Transform[] targets;                                    // target to aim for
 		private Transform activeTarget;
 		private int activeTargetIndex;
