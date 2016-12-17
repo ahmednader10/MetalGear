@@ -20,10 +20,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		private GameObject player;
 		private bool investgatingPlayer;
 		private Vector3 lastSeenPosition;
+		private bool playerIsNear = false;
 
 		public GameObject gun;
 		public float gunCoolDown = 1;
 		private float coolingDown;
+
+
 
 		private void Start()
 		{
@@ -146,5 +149,28 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				coolingDown -= Time.deltaTime;
 			}
 		}
+
+
+		void OnTriggerEnter(Collider collider) {
+			if (collider.gameObject.tag == "Player") {
+				playerIsNear = true;
+				print ("PLAYER IS NEAR");
+			}
+		}
+
+		void OnTriggerExit(Collider collider) {
+			if (collider.gameObject.tag == "Player") {
+				playerIsNear = false;
+			}
+		}
+
+		public void Distraction(Transform distractionPoint) {
+			if (playerIsNear) {
+				investgatingPlayer = true;
+				lastSeenPosition = distractionPoint.position;
+			}
+		}
+
+
 	}
 }

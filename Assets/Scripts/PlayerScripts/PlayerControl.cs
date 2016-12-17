@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Characters.ThirdPerson;
+
 
 public class PlayerControl : MonoBehaviour
 {
@@ -92,6 +94,10 @@ public class PlayerControl : MonoBehaviour
 		if (Input.GetMouseButtonUp (0)) {
 			Shoot ();
 //			print ("SHOOTING");
+		}
+
+		if (Input.GetKeyDown(KeyCode.X)) {
+			DistractEnemies ();
 		}
 
 		if (crawl) {
@@ -285,6 +291,16 @@ public class PlayerControl : MonoBehaviour
 			
 		if(hit.rigidbody){
 			hit.rigidbody.AddForceAtPosition(transform.forward * gunControls.RayStrength,hit.point);
+		}
+	}
+
+	void DistractEnemies() {
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		for (int i = 0; i < enemies.Length; i++) {
+			SoldierAIController enemyController = enemies [i].GetComponent<SoldierAIController>();
+			if (enemyController) {
+				enemyController.Distraction (transform);
+			}
 		}
 	}
 }
