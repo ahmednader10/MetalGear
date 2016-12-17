@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class PickToMenu : MonoBehaviour {
 	public Image SelectImage;
-	public List<Sprite> itemList = new List<Sprite> ();
+	public Hashtable itemList = new Hashtable ();
 	private int itemSpot = 0;
 
 	public GameObject[] weapons;
@@ -16,18 +16,23 @@ public class PickToMenu : MonoBehaviour {
 	public void RightButton() {
 		if (itemSpot < itemList.Count - 1) {
 			itemSpot++;
-			SelectImage.sprite = itemList [itemSpot];
+//			SelectImage.sprite = itemList [itemSpot];
 
 		}
 	}
 
-
 	public void leftButton() {
 		if (itemSpot > 0) {
 			itemSpot--;
-			SelectImage.sprite = itemList [itemSpot];
+		//	SelectImage.sprite = itemList [itemSpot];
 
 		}
+	}
+
+	public void AddGunSprite(GameObject item, int counter) {
+		
+		itemList.Add (counter, item);
+		print ("ADDED Gun Sprite: " + counter);
 	}
 
 	// Use this for initialization
