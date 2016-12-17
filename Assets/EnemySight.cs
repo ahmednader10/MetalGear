@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 
 public class EnemySight : MonoBehaviour
@@ -29,7 +29,7 @@ public class EnemySight : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag(DoneTags.player);
 		playerAnim = player.GetComponent<Animator>();
 		playerHealth = player.GetComponent<DonePlayerHealth>();
-		hash = GameObject.FindGameObjectWithTag(DoneTags.gameController).GetComponent<DoneHashIDs>();
+		//hash = GameObject.FindGameObjectWithTag(DoneTags.gameController).GetComponent<DoneHashIDs>();
 
 		// Set the personal sighting and the previous sighting to the reset position.
 		personalLastSighting = lastPlayerSighting.resetPosition;
@@ -149,3 +149,4 @@ public class EnemySight : MonoBehaviour
 		return pathLength;
 	}
 }
+*/
