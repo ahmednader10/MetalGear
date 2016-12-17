@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
+
 	[RequireComponent(typeof (NavMeshAgent))]
 	[RequireComponent(typeof (ThirdPersonCharacter))]
 	public class SoldierAIController : MonoBehaviour
@@ -14,11 +15,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		private Transform activeTarget;
 		private int activeTargetIndex;
 
+		private RaycastHit hit;
+		private float fov = 60.0f;
+		private GameObject player;
+		private bool investgatingPlayer;
+		private Vector3 lastSeenPosition;
+
 		private void Start()
 		{
 			// get the components on the object we need ( should not be null due to require component so no need to check )
 			agent = GetComponentInChildren<NavMeshAgent>();
 			character = GetComponent<ThirdPersonCharacter>();
+			player = GameObject.FindGameObjectWithTag ("Player");
 			activeTargetIndex = 0;
 			activeTarget = targets [activeTargetIndex];
 
@@ -33,16 +41,34 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		private void Update()
 		{
-		//	if (activeTarget != null)
-		//		agent.SetDestination(activeTarget.position);
+			bool playerInSight = LineOfSight (player.transform);
 
-		//	print ("Remaining Distance: " + agent.remainingDistance);	
-			if (agent.remainingDistance > agent.stoppingDistance)
-				character.Move (agent.desiredVelocity, false, false);
-			else {
-				nextTarget ();
-				print ("Active Target" + activeTarget);
+			if (playerInSight) {
+				investgatingPlayer = true;
+				lastSeenPosition = player.transform.position;
 			}
+
+			if (investgatingPlayer) {
+				agent.SetDestination (lastSeenPosition);
+
+				if (agent.remainingDistance > agent.stoppingDistance) {
+					character.Move (agent.desiredVelocity, false, false);
+				} else {
+					investgatingPlayer = false;
+					nextTarget ();
+				}
+
+			} else {
+				
+				if (agent.remainingDistance > agent.stoppingDistance)
+					character.Move (agent.desiredVelocity, false, false);
+				else {
+					nextTarget ();
+					print ("Active Target" + activeTarget);
+				}
+
+			}
+
 		}
 
 		public void nextTarget() {
@@ -59,6 +85,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		public void SetTarget(Transform target)
 		{
 			this.activeTarget = target;
+		}
+
+		public bool LineOfSight(Transform target) {
+			if (Vector3.Angle (target.position - transform.position, transform.forward) <= fov &&
+				Physics.Linecast(transform.position, target.position, out hit) &&
+				hit.collider.transform == target) {
+				print ("PLAYER IN SIGHT" + target.position);
+				return true;
+
+			}
+
+			return false;
 		}
 	}
 }
