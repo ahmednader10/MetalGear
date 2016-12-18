@@ -4,9 +4,10 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class PickToMenu : MonoBehaviour {
-	public Image SelectImage;
-	public Hashtable itemList = new Hashtable ();
-	private int itemSpot = 0;
+	public  Button SelectImage;
+	public static Hashtable itemList = new Hashtable ();
+	private static int itemSpot = 0;
+	public GameObject player;
 
 	public GameObject[] weapons;
 	public ArrayList IDs;
@@ -14,25 +15,48 @@ public class PickToMenu : MonoBehaviour {
 	public GameObject M9;
 
 	public void RightButton() {
-		if (itemSpot < itemList.Count - 1) {
-			itemSpot++;
-//			SelectImage.sprite = itemList [itemSpot];
+		print ("BARA IF" + itemList.Count + "" + itemSpot);
+		if (itemSpot <= itemList.Count - 1) {
+			
+			Debug.Log ("Right Button" + itemSpot);
+			SelectImage.image.sprite = (Sprite)itemList [itemSpot];
+			itemSpot++; 
 
 		}
 	}
 
 	public void leftButton() {
-		if (itemSpot > 0) {
-			itemSpot--;
-		//	SelectImage.sprite = itemList [itemSpot];
+		if (itemList.Count > 0) {
+			if (itemSpot > 0) {
+				itemSpot--;
+				print ("lEFT Button" + itemSpot);
+				SelectImage.image.sprite = (Sprite)itemList [itemSpot];
 
+
+			}
 		}
 	}
 
+	public void selectWeapon() {
+		print ("choose weapon" +itemSpot);
+		GameObject gun = (GameObject)player.gameObject.GetComponent<PlayerScript> ().guns [itemSpot];
+		if (gun.tag == "m9")
+			GameObject.FindGameObjectWithTag ("m91").SetActive(true);
+		if (gun.tag == "patriot")
+			GameObject.FindGameObjectWithTag ("patriot1").SetActive(true);
+		if (gun.tag == "ak47")
+			GameObject.FindGameObjectWithTag ("ak471").SetActive(true);
+
+
+	}
+
 	public void AddGunSprite(GameObject item, int counter) {
-		
-		itemList.Add (counter, item);
-		print ("ADDED Gun Sprite: " + counter);
+	    
+		Sprite image = item.gameObject.transform.GetChild (0).GetComponent<SpriteRenderer>().sprite;
+
+		itemList.Add (counter, image);
+		print (itemList.Count);
+		itemSpot = counter;
 	}
 
 	// Use this for initialization

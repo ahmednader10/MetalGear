@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
 	private ArrayList healthItems;
-	private Hashtable guns;
+	public Hashtable guns;
 	private int health = 100;
 	// Use this for initialization
 	void Start () {

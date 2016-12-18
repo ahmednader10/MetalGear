@@ -20,6 +20,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		private GameObject player;
 		private bool investgatingPlayer;
 		private Vector3 lastSeenPosition;
+		private bool playerIsNear = false;
+
+		public GameObject gun;
+		public float gunCoolDown = 1;
+		private float coolingDown;
+
+
 
 		private void Start()
 		{
@@ -29,6 +36,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			player = GameObject.FindGameObjectWithTag ("Player");
 			activeTargetIndex = 0;
 			activeTarget = targets [activeTargetIndex];
+			coolingDown = gunCoolDown;
+
 
 			if (activeTarget != null)
 				agent.SetDestination(activeTarget.position);
@@ -46,7 +55,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (playerInSight) {
 				investgatingPlayer = true;
 				lastSeenPosition = player.transform.position;
+				Shoot ();
 			}
+
+			manageGunCoolDown ();
 
 			if (investgatingPlayer) {
 				agent.SetDestination (lastSeenPosition);
@@ -90,13 +102,75 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		public bool LineOfSight(Transform target) {
 			if (Vector3.Angle (target.position - transform.position, transform.forward) <= fov &&
 				Physics.Linecast(transform.position, target.position, out hit) &&
-				hit.collider.transform == target) {
-				print ("PLAYER IN SIGHT" + target.position);
+				hit.collider.transform == target ) {
 				return true;
-
 			}
 
 			return false;
 		}
+
+
+		public void Shoot() {
+			if (gun) {
+
+				if (coolingDown <= 0) {
+					GunLaserScript gunControls = gun.GetComponent<GunLaserScript> ();
+					gunControls.Shoot ();
+					Vector3 forward = gun.transform.TransformDirection (Vector3.forward);
+					int ShotLength = gunControls.ShotLength;
+					int RayStrength = gunControls.RayStrength;
+					RaycastHit hit; 
+
+					if (Physics.Raycast (transform.position, forward, out hit, ShotLength)) { 
+						GunShot (gunControls, hit);
+					}
+					coolingDown = gunCoolDown;
+				}
+			}
+		}
+
+		private void GunShot(GunLaserScript gunControls, RaycastHit hit) {
+
+			if(hit.collider.gameObject.tag == "Player"){ 
+				GameObject player = hit.collider.gameObject;
+				HealthScript playerHealthScript = player.GetComponent<HealthScript> ();
+				if (playerHealthScript ) {
+					playerHealthScript.Hit (gunControls.damage);
+				}
+			}
+
+			if(hit.rigidbody){
+				hit.rigidbody.AddForceAtPosition(transform.forward * gunControls.RayStrength,hit.point);
+			}
+		}
+
+		private void manageGunCoolDown() {
+			if (coolingDown >= 0) {
+				coolingDown -= Time.deltaTime;
+			}
+		}
+
+
+		void OnTriggerEnter(Collider collider) {
+			if (collider.gameObject.tag == "Player") {
+				playerIsNear = true;
+				print ("PLAYER IS NEAR");
+			}
+		}
+
+		void OnTriggerExit(Collider collider) {
+			if (collider.gameObject.tag == "Player") {
+				playerIsNear = false;
+			}
+		}
+
+		public void Distraction(Transform distractionPoint) {
+			if (playerIsNear) {
+				investgatingPlayer = true;
+				lastSeenPosition = distractionPoint.position;
+			}
+		}
+
+
 	}
 }

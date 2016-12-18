@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Characters.ThirdPerson;
+
 
 public class PlayerControl : MonoBehaviour
 {
@@ -54,6 +56,8 @@ public class PlayerControl : MonoBehaviour
 	private AudioSource walkingSource;
 	public GameObject SoundController;
 
+	public GameObject gun;
+
 	void Awake()
 	{
 		anim = GetComponent<Animator> ();
@@ -85,6 +89,15 @@ public class PlayerControl : MonoBehaviour
 
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {
 			crawl = !crawl;
+		}
+
+		if (Input.GetMouseButtonUp (0)) {
+			Shoot ();
+//			print ("SHOOTING");
+		}
+
+		if (Input.GetKeyDown(KeyCode.X)) {
+			DistractEnemies ();
 		}
 
 		if (crawl) {
@@ -246,5 +259,48 @@ public class PlayerControl : MonoBehaviour
 	public bool isSprinting()
 	{
 		return sprint && !aim && (isMoving);
+	}
+
+	public void Shoot() {
+
+		if (!PlayerControl.crawl && !box_script.isCovered) {
+			if (gun) {
+				GunLaserScript gunControls = gun.GetComponent<GunLaserScript> ();
+				gunControls.Shoot ();
+				Vector3 forward= gun.transform.TransformDirection(Vector3.forward);
+				int ShotLength = gunControls.ShotLength;
+				int RayStrength = gunControls.RayStrength;
+				RaycastHit hit; 
+
+				if(Physics.Raycast(transform.position, forward, out hit, ShotLength)){ 
+					GunShot (gunControls, hit);
+				}
+			}
+		}
+	}
+
+	private void GunShot(GunLaserScript gunControls, RaycastHit hit) {
+
+		if(hit.collider.gameObject.tag == "Enemy"){ 
+			GameObject enemy = hit.collider.gameObject;
+			HealthScript enemyHealthScript = enemy.GetComponent<HealthScript> ();
+			if (enemyHealthScript) {
+				enemyHealthScript.Hit (gunControls.damage);
+			}
+		}
+			
+		if(hit.rigidbody){
+			hit.rigidbody.AddForceAtPosition(transform.forward * gunControls.RayStrength,hit.point);
+		}
+	}
+
+	void DistractEnemies() {
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		for (int i = 0; i < enemies.Length; i++) {
+			SoldierAIController enemyController = enemies [i].GetComponent<SoldierAIController>();
+			if (enemyController) {
+				enemyController.Distraction (transform);
+			}
+		}
 	}
 }
