@@ -27,6 +27,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		private float coolingDown;
 
 
+		public float runSpeed = 1.0f;
+
+		private Animator animator;
+
+
 
 		private void Start()
 		{
@@ -34,6 +39,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			agent = GetComponentInChildren<NavMeshAgent>();
 			character = GetComponent<ThirdPersonCharacter>();
 			player = GameObject.FindGameObjectWithTag ("Player");
+			animator = GetComponent<Animator>();
+
 			activeTargetIndex = 0;
 			activeTarget = targets [activeTargetIndex];
 			coolingDown = gunCoolDown;
@@ -55,16 +62,20 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (playerInSight) {
 				investgatingPlayer = true;
 				lastSeenPosition = player.transform.position;
+
+
 				Shoot ();
 			}
 
 			manageGunCoolDown ();
 
+			UpdateAnimator ();
+
 			if (investgatingPlayer) {
 				agent.SetDestination (lastSeenPosition);
 
 				if (agent.remainingDistance > agent.stoppingDistance) {
-					character.Move (agent.desiredVelocity, false, false);
+					character.Move (agent.desiredVelocity * 2, false, false);
 				} else {
 					investgatingPlayer = false;
 					nextTarget ();
@@ -82,6 +93,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 
 		}
+
+		private void UpdateAnimator() {
+			animator.SetBool("PlayerInSight", investgatingPlayer);
+
+		
+		}
+
 
 		public void nextTarget() {
 			if (activeTargetIndex == targets.Length - 1) {
