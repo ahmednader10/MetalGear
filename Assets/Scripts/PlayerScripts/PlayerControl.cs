@@ -148,8 +148,10 @@ public class PlayerControl : MonoBehaviour
 			if(timeToNextJump > 0)
 				timeToNextJump -= Time.deltaTime;
 		}
+
 		if (Input.GetButtonDown ("Jump"))
 		{
+			print ("GET BUTTON JUMP");
 			anim.SetBool(jumpBool, true);
 			if(speed > 0 && timeToNextJump <= 0 && !aim)
 			{

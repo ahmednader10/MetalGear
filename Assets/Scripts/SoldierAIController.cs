@@ -96,8 +96,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		private void UpdateAnimator() {
 			animator.SetBool("PlayerInSight", investgatingPlayer);
-
-		
 		}
 
 
