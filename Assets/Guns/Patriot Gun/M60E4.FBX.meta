@@ -1,0 +1,127 @@
+fileFormatVersion: 2
+guid: 04052408fcca14c3eba3c24a1e8bd752
+timeCreated: 1482001349
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 1BULLET
+    100002: 2BULLETSET_2
+    100004: 3SETOFBULLET
+    100006: BOLT
+    100008: BOXMAG
+    100010: CARRYHANDLE
+    100012: FRONTSIGHT
+    100014: //RootNode
+    100016: MAG_LID
+    100018: MAGWELL
+    100020: REARSIGHT
+    400000: 1BULLET
+    400002: 2BULLETSET_2
+    400004: 3SETOFBULLET
+    400006: BOLT
+    400008: BOXMAG
+    400010: CARRYHANDLE
+    400012: FRONTSIGHT
+    400014: //RootNode
+    400016: MAG_LID
+    400018: MAGWELL
+    400020: REARSIGHT
+    2300000: 1BULLET
+    2300002: 2BULLETSET_2
+    2300004: 3SETOFBULLET
+    2300006: BOLT
+    2300008: BOXMAG
+    2300010: CARRYHANDLE
+    2300012: FRONTSIGHT
+    2300014: //RootNode
+    2300016: MAG_LID
+    2300018: MAGWELL
+    2300020: REARSIGHT
+    3300000: 1BULLET
+    3300002: 2BULLETSET_2
+    3300004: 3SETOFBULLET
+    3300006: BOLT
+    3300008: BOXMAG
+    3300010: CARRYHANDLE
+    3300012: FRONTSIGHT
+    3300014: //RootNode
+    3300016: MAG_LID
+    3300018: MAGWELL
+    3300020: REARSIGHT
+    4300000: Mesh_0009
+    4300002: MAGWELL
+    4300004: REARSIGHT
+    4300006: BOXMAG
+    4300008: 2BULLETSET_2
+    4300010: 3SETOFBULLET
+    4300012: 1BULLET
+    4300014: MAG_LID
+    4300016: CARRYHANDLE
+    4300018: FRONTSIGHT
+    4300020: BOLT
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
